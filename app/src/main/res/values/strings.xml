@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mask EditText</string>
+
+    <string name="hint_phone_number">Phone number</string>
+    <string name="hint_credit_cart_number">Credit cart number</string>
+    <string name="hint_date">Date</string>
+    <string name="show_result">Show Results</string>
+
+</resources>
