@@ -17,8 +17,8 @@ public class MaskEditText extends AppCompatEditText {
 
     private static final char REPLACE_CHAR = '#';
 
-    private CharSequence mMask;
-    private boolean mOnUpdate;
+    private CharSequence mask;
+    private boolean updating;
 
     public MaskEditText(Context context) {
         super(context);
@@ -42,18 +42,50 @@ public class MaskEditText extends AppCompatEditText {
     private void init(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MaskEditText);
         try {
-            setMask(a.getString(R.styleable.MaskEditText_mask));
+            setMask(a.getString(R.styleable.MaskEditText_met_mask));
         } finally {
             a.recycle();
         }
     }
 
+    private void applyMask(Editable text) {
+        if (TextUtils.isEmpty(text) || !hasMask()) {
+            return;
+        }
+
+        //remove input filters to ignore input type
+        InputFilter[] filters = text.getFilters();
+        text.setFilters(new InputFilter[0]);
+
+        int maskLen = mask.length();
+        int textLen = text.length();
+
+        int i = 0;
+        int notSymbolIndex = 0;
+        StringBuilder sb = new StringBuilder();
+        while (i < maskLen && notSymbolIndex < textLen) {
+            if (mask.charAt(i) == text.charAt(notSymbolIndex) || mask.charAt(i) == REPLACE_CHAR) {
+                sb.append(text.charAt(notSymbolIndex));
+                notSymbolIndex++;
+            } else {
+                sb.append(mask.charAt(i));
+            }
+            i++;
+        }
+
+        text.clear();
+        text.append(sb.toString());
+
+        //reset filters
+        text.setFilters(filters);
+    }
+
     public boolean hasMask() {
-        return !TextUtils.isEmpty(mMask);
+        return !TextUtils.isEmpty(mask);
     }
 
     public boolean isUpdating() {
-        return mOnUpdate;
+        return updating;
     }
 
     public String getRawText() {
@@ -62,7 +94,7 @@ public class MaskEditText extends AppCompatEditText {
     }
 
     public void setMask(CharSequence mask) {
-        mMask = mask;
+        this.mask = mask;
 
         if (hasMask()) {
             setMaxLength(mask.length());
@@ -79,49 +111,17 @@ public class MaskEditText extends AppCompatEditText {
             return text;
         }
 
-        int maskLen = mMask.length();
+        int maskLen = mask.length();
         int textLen = text.length();
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < maskLen && i < textLen; i++) {
-            if (mMask.charAt(i) == REPLACE_CHAR) {
+            if (mask.charAt(i) == REPLACE_CHAR) {
                 sb.append(text.charAt(i));
             }
         }
 
         return sb.toString();
-    }
-
-    private void applyMask(Editable text) {
-        if (TextUtils.isEmpty(text) || !hasMask()) {
-            return;
-        }
-
-        //remove input filters to ignore input type
-        InputFilter[] filters = text.getFilters();
-        text.setFilters(new InputFilter[0]);
-
-        int maskLen = mMask.length();
-        int textLen = text.length();
-
-        int i = 0;
-        int notSymbolIndex = 0;
-        StringBuilder sb = new StringBuilder();
-        while (i < maskLen && notSymbolIndex < textLen) {
-            if (mMask.charAt(i) == text.charAt(notSymbolIndex) || mMask.charAt(i) == REPLACE_CHAR) {
-                sb.append(text.charAt(notSymbolIndex));
-                notSymbolIndex++;
-            } else {
-                sb.append(mMask.charAt(i));
-            }
-            i++;
-        }
-
-        text.clear();
-        text.append(sb.toString());
-
-        //reset filters
-        text.setFilters(filters);
     }
 
     private class MaskFormatter implements TextWatcher {
@@ -132,13 +132,13 @@ public class MaskEditText extends AppCompatEditText {
         }
 
         @Override public void afterTextChanged(Editable s) {
-            if (mOnUpdate || !hasMask()) {
+            if (updating || !hasMask()) {
                 return;
             }
 
-            mOnUpdate = true;
+            updating = true;
             applyMask(s);
-            mOnUpdate = false;
+            updating = false;
         }
     }
 }
