@@ -1,6 +1,6 @@
 # Mask EditText
 
-[![](https://jitpack.io/v/santalu/mask-edittext.svg)](https://jitpack.io/#santalu/mask-edittext) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Mask%20EditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6037)
+[![](https://jitpack.io/v/santalu/mask-edittext.svg)](https://jitpack.io/#santalu/mask-edittext) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Mask%20EditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6037) [![Build Status](https://travis-ci.org/santalu/mask-edittext.svg?branch=master)](https://travis-ci.org/santalu/mask-edittext)
 
 ## Sample
 
