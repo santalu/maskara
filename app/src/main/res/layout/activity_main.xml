@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_credit_cart_number"
             android:inputType="number"
+            android:importantForAccessibility="no"
             app:met_mask="#### #### #### ####"/>
 
     </android.support.design.widget.TextInputLayout>
