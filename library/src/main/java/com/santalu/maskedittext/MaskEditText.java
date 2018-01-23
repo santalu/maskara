@@ -16,6 +16,7 @@ import android.util.AttributeSet;
 public class MaskEditText extends AppCompatEditText {
 
     private static final char REPLACE_CHAR = '#';
+    private static final char EMPTY_CHAR = ' ';
 
     private CharSequence mask;
     private boolean updating;
@@ -48,36 +49,33 @@ public class MaskEditText extends AppCompatEditText {
         }
     }
 
-    private void applyMask(Editable text) {
-        if (TextUtils.isEmpty(text) || !hasMask()) {
+    private void applyMask(Editable e) {
+        if (TextUtils.isEmpty(e) || !hasMask()) {
             return;
         }
 
         //remove input filters to ignore input type
-        InputFilter[] filters = text.getFilters();
-        text.setFilters(new InputFilter[0]);
+        InputFilter[] filters = e.getFilters();
+        e.setFilters(new InputFilter[0]);
+
+        StringBuilder sb = new StringBuilder(getUnMaskedText(e.toString()));
+        e.clear();
 
         int maskLen = mask.length();
-        int textLen = text.length();
 
-        int i = 0;
-        int notSymbolIndex = 0;
-        StringBuilder sb = new StringBuilder();
-        while (i < maskLen && notSymbolIndex < textLen) {
-            if (mask.charAt(i) == text.charAt(notSymbolIndex) || mask.charAt(i) == REPLACE_CHAR) {
-                sb.append(text.charAt(notSymbolIndex));
-                notSymbolIndex++;
+        for (int i = 0; i < maskLen && sb.length() > 0; i++) {
+            char m = mask.charAt(i);
+            char t = sb.charAt(0);
+            if (m == REPLACE_CHAR) {
+                e.append(t);
+                sb.deleteCharAt(0);
             } else {
-                sb.append(mask.charAt(i));
+                e.append(m);
             }
-            i++;
         }
 
-        text.clear();
-        text.append(sb.toString());
-
         //reset filters
-        text.setFilters(filters);
+        e.setFilters(filters);
     }
 
     public boolean hasMask() {
@@ -90,7 +88,7 @@ public class MaskEditText extends AppCompatEditText {
 
     public String getRawText() {
         String text = String.valueOf(super.getText());
-        return getUnmaskedText(text);
+        return getUnMaskedText(text);
     }
 
     public void setMask(CharSequence mask) {
@@ -103,10 +101,10 @@ public class MaskEditText extends AppCompatEditText {
     }
 
     public void setMaxLength(int length) {
-        setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
     }
 
-    public String getUnmaskedText(String text) {
+    private String getUnMaskedText(String text) {
         if (TextUtils.isEmpty(text) || !hasMask()) {
             return text;
         }
@@ -116,8 +114,10 @@ public class MaskEditText extends AppCompatEditText {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < maskLen && i < textLen; i++) {
-            if (mask.charAt(i) == REPLACE_CHAR) {
-                sb.append(text.charAt(i));
+            char m = mask.charAt(i);
+            char t = text.charAt(i);
+            if (t != EMPTY_CHAR && t != m) {
+                sb.append(t);
             }
         }
 
@@ -125,19 +125,21 @@ public class MaskEditText extends AppCompatEditText {
     }
 
     private class MaskFormatter implements TextWatcher {
+
         @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
 
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+
         }
 
-        @Override public void afterTextChanged(Editable s) {
+        @Override public void afterTextChanged(Editable e) {
             if (updating || !hasMask()) {
                 return;
             }
 
             updating = true;
-            applyMask(s);
+            applyMask(e);
             updating = false;
         }
     }
