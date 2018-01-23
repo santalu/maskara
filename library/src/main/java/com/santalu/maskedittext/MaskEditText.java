@@ -8,6 +8,8 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.View;
 
 /**
  * Created by santalu on 09/08/2017.
@@ -20,6 +22,7 @@ public class MaskEditText extends AppCompatEditText {
 
     private CharSequence mask;
     private boolean updating;
+    private boolean deleting;
 
     public MaskEditText(Context context) {
         super(context);
@@ -54,6 +57,9 @@ public class MaskEditText extends AppCompatEditText {
             return;
         }
 
+        //save cursor position
+        int cursorPosition = getSelectionStart();
+
         //remove input filters to ignore input type
         InputFilter[] filters = e.getFilters();
         e.setFilters(new InputFilter[0]);
@@ -76,6 +82,13 @@ public class MaskEditText extends AppCompatEditText {
 
         //reset filters
         e.setFilters(filters);
+
+        int currentTextLen = e.length();
+        //check if deleting
+        if (deleting && cursorPosition < currentTextLen) {
+            setSelection(cursorPosition);
+            deleting = false;
+        }
     }
 
     public boolean hasMask() {
@@ -89,19 +102,6 @@ public class MaskEditText extends AppCompatEditText {
     public String getRawText() {
         String text = String.valueOf(super.getText());
         return getUnMaskedText(text);
-    }
-
-    public void setMask(CharSequence mask) {
-        this.mask = mask;
-
-        if (hasMask()) {
-            setMaxLength(mask.length());
-            addTextChangedListener(new MaskFormatter());
-        }
-    }
-
-    public void setMaxLength(int length) {
-        setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
     }
 
     private String getUnMaskedText(String text) {
@@ -124,23 +124,40 @@ public class MaskEditText extends AppCompatEditText {
         return sb.toString();
     }
 
-    private class MaskFormatter implements TextWatcher {
+    public void setMask(CharSequence mask) {
+        this.mask = mask;
 
-        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        if (hasMask()) {
+            setMaxLength(mask.length());
+            addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override public void afterTextChanged(Editable s) {
+                    if (updating || !hasMask()) {
+                        return;
+                    }
+
+                    updating = true;
+                    applyMask(s);
+                    updating = false;
+                }
+            });
+            setOnKeyListener(new OnKeyListener() {
+                @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    deleting = keyCode == KeyEvent.KEYCODE_DEL;
+                    return false;
+                }
+            });
         }
+    }
 
-        @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override public void afterTextChanged(Editable e) {
-            if (updating || !hasMask()) {
-                return;
-            }
-
-            updating = true;
-            applyMask(e);
-            updating = false;
-        }
+    public void setMaxLength(int length) {
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
     }
 }
