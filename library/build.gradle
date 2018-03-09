@@ -1,23 +1,23 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+  compileSdkVersion 27
+  buildToolsVersion "27.0.3"
 
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
-        versionCode 4
-        versionName "1.0.2"
+  defaultConfig {
+    minSdkVersion 14
+    targetSdkVersion 27
+    versionCode 5
+    versionName "1.0.3"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
+  implementation 'com.android.support:appcompat-v7:27.1.0'
 }

@@ -7,70 +7,70 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+  <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
-        <com.santalu.maskedittext.MaskEditText
-            android:id="@+id/et_credit_cart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_credit_cart_number"
-            android:inputType="number"
-            android:importantForAccessibility="no"
-            app:met_mask="#### #### #### ####"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.santalu.maskedittext.MaskEditText
-            android:id="@+id/et_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_phone_number"
-            android:inputType="phone"
-            app:met_mask="+90(###) ### ## ##"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.santalu.maskedittext.MaskEditText
-            android:id="@+id/et_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_date"
-            android:inputType="date"
-            app:met_mask="##.##.####"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/button"
+    <com.santalu.maskedittext.MaskEditText
+        android:id="@+id/et_credit_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/show_result"/>
+        android:hint="@string/hint_credit_cart_number"
+        android:importantForAccessibility="no"
+        android:inputType="number"
+        app:met_mask="#### #### #### ####"/>
 
-    <TextView
-        android:id="@+id/tv_credit_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+  </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+  <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <com.santalu.maskedittext.MaskEditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_phone_number"
+        android:inputType="phone"
+        app:met_mask="+90(###) ### ## ##"/>
+
+  </android.support.design.widget.TextInputLayout>
+
+  <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <com.santalu.maskedittext.MaskEditText
+        android:id="@+id/et_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_date"
+        android:inputType="date"
+        app:met_mask="##.##.####"/>
+
+  </android.support.design.widget.TextInputLayout>
+
+  <Button
+      android:id="@+id/button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginTop="16dp"
+      android:text="@string/show_result"/>
+
+  <TextView
+      android:id="@+id/tv_credit_cart"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+
+  <TextView
+      android:id="@+id/tv_phone_number"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+
+  <TextView
+      android:id="@+id/tv_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
 
 </LinearLayout>
