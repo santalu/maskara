@@ -10,6 +10,7 @@ android {
     versionCode 5
     versionName "1.0.3"
   }
+
   buildTypes {
     release {
       minifyEnabled false

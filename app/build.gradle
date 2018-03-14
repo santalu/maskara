@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
   compileSdkVersion 27
   buildToolsVersion "27.0.3"
+
   defaultConfig {
     applicationId "com.santalu.myapplication"
     minSdkVersion 15
@@ -11,6 +12,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
+
   buildTypes {
     release {
       minifyEnabled false
