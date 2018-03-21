@@ -30,7 +30,7 @@ dependencies {
     android:layout_height="wrap_content"
     android:hint="@string/hint_phone_number"
     android:inputType="phone"
-    app:mask="+90(###) ### ## ##"/>
+    app:met_mask="+90(###) ### ## ##"/>
 ```
 
 ## Attributes
