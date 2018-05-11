@@ -8,17 +8,13 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 
 /**
  * Created by santalu on 09/08/2017.
  */
 
 public class MaskEditText extends AppCompatEditText implements TextWatcher {
-
-  private static final String TAG = MaskEditText.class.getSimpleName();
 
   private static final char REPLACE_CHAR = '#';
   private static final char EMPTY_CHAR = ' ';
@@ -89,7 +85,6 @@ public class MaskEditText extends AppCompatEditText implements TextWatcher {
     int currentTextLen = e.length();
     //check if deleting
     if (deleting && cursorPosition < currentTextLen) {
-      Log.v(TAG, "text " + e.toString() + " cursor " + cursorPosition);
       setSelection(cursorPosition);
       deleting = false;
     }
@@ -136,12 +131,10 @@ public class MaskEditText extends AppCompatEditText implements TextWatcher {
       addTextChangedListener(this);
 
       //detect delete
-      setOnKeyListener(new OnKeyListener() {
-        @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
-          deleting = event.getAction() == KeyEvent.ACTION_DOWN
-              && event.getKeyCode() == KeyEvent.KEYCODE_DEL;
-          return false;
-        }
+      setOnKeyListener((v, keyCode, event) -> {
+        deleting = event.getAction() == KeyEvent.ACTION_DOWN
+            && event.getKeyCode() == KeyEvent.KEYCODE_DEL;
+        return false;
       });
     }
   }
@@ -150,15 +143,18 @@ public class MaskEditText extends AppCompatEditText implements TextWatcher {
     setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
   }
 
-  @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+  @Override
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
   }
 
-  @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+  @Override
+  public void onTextChanged(CharSequence s, int start, int before, int count) {
 
   }
 
-  @Override public void afterTextChanged(Editable s) {
+  @Override
+  public void afterTextChanged(Editable s) {
     if (updating || !hasMask()) {
       return;
     }
