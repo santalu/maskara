@@ -12,7 +12,7 @@
       android:layout_height="wrap_content">
 
     <com.santalu.maskedittext.MaskEditText
-        android:id="@+id/et_credit_cart"
+        android:id="@+id/etCreditCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_credit_cart_number"
@@ -27,7 +27,7 @@
       android:layout_height="wrap_content">
 
     <com.santalu.maskedittext.MaskEditText
-        android:id="@+id/et_phone_number"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_phone_number"
@@ -41,7 +41,7 @@
       android:layout_height="wrap_content">
 
     <com.santalu.maskedittext.MaskEditText
-        android:id="@+id/et_date"
+        android:id="@+id/etDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_date"
@@ -51,7 +51,7 @@
   </android.support.design.widget.TextInputLayout>
 
   <Button
-      android:id="@+id/button"
+      android:id="@+id/show"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="16dp"
@@ -59,17 +59,17 @@
       android:text="@string/show_result"/>
 
   <TextView
-      android:id="@+id/tv_credit_cart"
+      android:id="@+id/tvCreditCart"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
   <TextView
-      android:id="@+id/tv_phone_number"
+      android:id="@+id/tvPhoneNumber"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
   <TextView
-      android:id="@+id/tv_date"
+      android:id="@+id/tvDate"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
 
