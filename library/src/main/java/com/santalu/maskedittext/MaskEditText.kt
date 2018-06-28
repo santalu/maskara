@@ -12,6 +12,8 @@ class MaskEditText : AppCompatEditText {
 
   private var selfChange: Boolean = false
   private var mask: String? = null
+  val rawText: String?
+    get() = unformat(text)
 
   constructor(context: Context) : super(context)
 
@@ -73,6 +75,22 @@ class MaskEditText : AppCompatEditText {
     }
 
     setText(builder)
+  }
+
+  private fun unformat(source: CharSequence?): String? {
+    if (source.isNullOrEmpty() || mask.isNullOrEmpty()) return null
+
+    val builder = StringBuilder()
+    val textLength = source!!.length
+    mask?.forEachIndexed { index, m ->
+      if (index >= textLength) return@forEachIndexed
+      val c = source[index]
+      if (m.isPlaceHolder()) {
+        builder.append(c)
+      }
+    }
+
+    return builder.toString()
   }
 
   private fun setCursorPosition(start: Int, lengthBefore: Int, lengthAfter: Int) {

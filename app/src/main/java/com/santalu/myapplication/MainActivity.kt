@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     show.setOnClickListener {
-      tvCreditCart.text = etCreditCart.text
-      tvPhoneNumber.text = etPhoneNumber.text
-      tvDate.text = etDate.text
+      tvCreditCart.text = etCreditCart.rawText
+      tvPhoneNumber.text = etPhoneNumber.rawText
+      tvDate.text = etDate.rawText
     }
   }
 }
