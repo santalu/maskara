@@ -12,7 +12,7 @@ class MaskEditText : AppCompatEditText {
 
   private var selfChange: Boolean = false
   private var mask: String? = null
-  public val rawText get() = unformat(text)
+  val rawText get() = unformat(text)
 
   constructor(context: Context) : super(context)
 
