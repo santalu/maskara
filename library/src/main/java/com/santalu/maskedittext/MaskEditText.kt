@@ -12,8 +12,7 @@ class MaskEditText : AppCompatEditText {
 
   private var selfChange: Boolean = false
   private var mask: String? = null
-  val rawText: String?
-    get() = unformat(text)
+  val rawText get() = unformat(text)
 
   constructor(context: Context) : super(context)
 
@@ -38,6 +37,7 @@ class MaskEditText : AppCompatEditText {
 
   override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
     if (text.isNullOrEmpty() || selfChange) return
+
     selfChange = true
     format(text)
     setCursorPosition(start, lengthBefore, lengthAfter)
