@@ -18,7 +18,7 @@ allprojects {
 ```
 ```
 dependencies {
-  implementation 'com.github.santalu:mask-edittext:1.0.6'
+  implementation 'com.github.santalu:mask-edittext:1.0.7'
 }
 ```
 
