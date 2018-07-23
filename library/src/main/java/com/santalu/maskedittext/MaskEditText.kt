@@ -11,7 +11,15 @@ import android.util.AttributeSet
 class MaskEditText : AppCompatEditText {
 
   private var selfChange: Boolean = false
-  private var mask: String? = null
+
+  var mask: String? = null
+    set(value) {
+      field = value
+      selfChange = true
+      format(text)
+      selfChange = false
+    }
+
   val rawText get() = unformat(text)
 
   constructor(context: Context) : super(context)
