@@ -15,9 +15,7 @@ class MaskEditText : AppCompatEditText {
   var mask: String? = null
     set(value) {
       field = value
-      selfChange = true
       format(text)
-      selfChange = false
     }
 
   val rawText get() = unformat(text)
@@ -46,14 +44,14 @@ class MaskEditText : AppCompatEditText {
   override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
     if (text.isNullOrEmpty() || selfChange) return
 
-    selfChange = true
     format(text)
     setCursorPosition(start, lengthBefore, lengthAfter)
-    selfChange = false
   }
 
   private fun format(source: CharSequence?) {
     if (source.isNullOrEmpty() || mask.isNullOrEmpty()) return
+
+    selfChange = true
 
     val builder = StringBuilder()
     val textLength = source!!.length
@@ -81,8 +79,9 @@ class MaskEditText : AppCompatEditText {
         if (c == it) textIndex++
       }
     }
-
     setText(builder)
+
+    selfChange = false
   }
 
   private fun unformat(source: CharSequence?): String? {
@@ -97,7 +96,6 @@ class MaskEditText : AppCompatEditText {
         builder.append(c)
       }
     }
-
     return builder.toString()
   }
 
