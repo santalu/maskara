@@ -2,14 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion "27.0.3"
+  compileSdkVersion rootProject.compile_sdk_version
 
   defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 27
+    minSdkVersion rootProject.min_sdk_version
+    targetSdkVersion rootProject.target_sdk_version
     versionCode 10
-    versionName "1.0.8"
+    versionName "1.0.9"
   }
 
   buildTypes {
@@ -18,6 +17,7 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "com.android.support:appcompat-v7:$supportlibrary_version"
+  implementation "com.android.support:appcompat-v7:$support_version"
 }

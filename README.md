@@ -4,7 +4,7 @@
 
 ## Sample
 
-<img src="https://github.com/santalu/mask-edittext/blob/master/screens/sample.png"/>
+<img src="https://github.com/santalu/mask-edittext/blob/master/screens/sample.webp"/>
 
 ## Usage
 
@@ -18,13 +18,13 @@ allprojects {
 ```
 ```
 dependencies {
-  implementation 'com.github.santalu:mask-edittext:1.0.7'
+  implementation 'com.github.santalu:mask-edittext:1.0.9'
 }
 ```
 
 ### XML
 ```xml
- <com.santalu.maskedittext.MaskEditText
+ <com.santalu.widget.MaskEditText
     android:id="@+id/et_phone_number"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

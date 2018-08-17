@@ -1,4 +1,4 @@
-package com.santalu.maskedittext
+package com.santalu.widget
 
 import android.content.Context
 import android.support.v7.widget.AppCompatEditText
@@ -7,6 +7,8 @@ import android.util.AttributeSet
 /**
  * Created by fatih.santalu on 6/27/2018.
  */
+
+internal fun Char.isPlaceHolder(): Boolean = this == '#'
 
 class MaskEditText : AppCompatEditText {
 
