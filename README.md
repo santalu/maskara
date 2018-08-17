@@ -4,7 +4,7 @@
 
 ## Sample
 
-<img src="https://github.com/santalu/mask-edittext/blob/master/screens/sample.webp"/>
+<img src="https://github.com/santalu/mask-edittext/blob/master/media/sample.webp"/>
 
 ## Usage
 
