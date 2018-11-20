@@ -1,7 +1,7 @@
 <resources>
 
   <string name="app_name">Mask EditText</string>
-  <string name="hint_token">Token</string>
+  <string name="hint_custom">Custom</string>
   <string name="hint_credit_cart_number">Credit cart number</string>
   <string name="hint_phone_number">Phone number</string>
   <string name="hint_date">Date</string>

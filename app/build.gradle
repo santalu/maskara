@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion rootProject.compile_sdk_version
+  compileSdkVersion compileSdk_version
 
   defaultConfig {
     applicationId "com.santalu.sample"
-    minSdkVersion rootProject.min_sdk_version
-    targetSdkVersion rootProject.target_sdk_version
+    minSdkVersion minSdk_version
+    targetSdkVersion targetSdk_version
     versionCode 1
     versionName "1.0"
   }
@@ -23,8 +23,8 @@ android {
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation project(':widget')
+  implementation project(':library')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "com.android.support:appcompat-v7:$support_version"
-  implementation "com.android.support:design:$support_version"
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "com.google.android.material:material:$material_version"
 }

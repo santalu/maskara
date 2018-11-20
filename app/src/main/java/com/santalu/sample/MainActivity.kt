@@ -1,16 +1,17 @@
 package com.santalu.sample
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.santalu.maskedittext.MaskTextWatcher
 import kotlinx.android.synthetic.main.activity_main.etCreditCart
+import kotlinx.android.synthetic.main.activity_main.etCustom
 import kotlinx.android.synthetic.main.activity_main.etDate
 import kotlinx.android.synthetic.main.activity_main.etPhoneNumber
-import kotlinx.android.synthetic.main.activity_main.etToken
 import kotlinx.android.synthetic.main.activity_main.show
 import kotlinx.android.synthetic.main.activity_main.tvCreditCart
+import kotlinx.android.synthetic.main.activity_main.tvCustom
 import kotlinx.android.synthetic.main.activity_main.tvDate
 import kotlinx.android.synthetic.main.activity_main.tvPhoneNumber
-import kotlinx.android.synthetic.main.activity_main.tvToken
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,11 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
+    val textWatcher = MaskTextWatcher(etCustom, "#### ####")
+    etCustom.addTextChangedListener(textWatcher)
+
     show.setOnClickListener {
-      tvToken.text = etToken.rawText
+      tvCustom.text = textWatcher.unformat(etCustom.text)
       tvCreditCart.text = etCreditCart.rawText
       tvPhoneNumber.text = etPhoneNumber.rawText
       tvDate.text = etDate.rawText
