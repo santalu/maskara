@@ -105,5 +105,3 @@ class MaskTextWatcher(
     return if (position < textLength) position else textLength
   }
 }
-
-internal fun Char.isPlaceHolder(): Boolean = this == '#'
