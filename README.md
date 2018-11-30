@@ -24,7 +24,7 @@ dependencies {
 
 ### XML
 ```xml
- <com.santalu.widget.MaskEditText
+ <com.santalu.maskedittext.MaskEditText
     android:id="@+id/et_phone_number"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
