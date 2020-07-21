@@ -79,7 +79,7 @@ internal fun Mask.nextSelection(before: CharSequence, after: CharSequence, actio
     val start = Selection.getSelectionStart(before)
     if (action == Action.DELETE) {
         if (style != MaskStyle.PERSISTENT) return start
-        // Do not let cursor exceed beyond first mask character
+        // Do not let the cursor exceed beyond first mask character
         val firstMaskIndex = value.indexOf(character, 0)
         return start.coerceAtLeast(firstMaskIndex)
     }

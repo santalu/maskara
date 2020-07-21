@@ -15,7 +15,7 @@ internal data class MaskResult(
 )
 
 /**
- * Applies mask result to given text without affecting by any input filters
+ * Applies mask result to given text without getting affected by any input filters
  */
 internal fun MaskResult.apply(text: Editable) {
     // suspend filters to allow masking work for all input types

@@ -7,15 +7,15 @@ package com.santalu.maskara
  *
  * [NORMAL]
  * Mask is never visible.
- * The cursor is not limited.
+ * Cursor is not limited.
  *
  * [COMPLETABLE]
  * Mask becomes visible right after the user started typing until the user deleted everything.
- * The cursor is not limited.
+ * Cursor is not limited.
  *
  * [PERSISTENT]
  * Mask becomes visible right after the user started typing and never becomes hidden.
- * The cursor is limited between mask characters.
+ * Cursor is limited between mask characters.
  * Placeholders are not allowed to delete.
  */
 
