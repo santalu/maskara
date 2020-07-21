@@ -54,6 +54,7 @@ You can retrieve these from both widget and listener.
     android:id="@+id/input"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:inputType="number"
     app:mask="+90 (___) ___ __ __"
     app:maskCharacter="_"
     app:maskStyle="completable" />
