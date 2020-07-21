@@ -2,6 +2,7 @@
 
 [![](https://www.jitpack.io/v/santalu/maskara.svg)](https://www.jitpack.io/#santalu/maskara)
 [![Build Status](https://travis-ci.org/santalu/maskara.svg?branch=master)](https://travis-ci.org/santalu/maskara)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 A simple way to format text fields without getting affected by input filters.
 
@@ -37,7 +38,7 @@ Used to define mask visibility and cursor behaviour.
 
 #### [MaskResult](./library/src/main/java/com/santalu/maskara/MaskResult.kt)
 
-You can retrieve these from both widget and listener.
+You can retrieve these from both the widget and the listener.
 
 * `masked` Masked version of input text.
 
