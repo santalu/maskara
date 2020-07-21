@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // region FOUNDATION
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "androidx.core:core-ktx:$versions.core"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    // endregion
+
+    // region UI
+    implementation "com.google.android.material:material:$versions.material"
+    // endregion
+}

@@ -1,30 +1,47 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 android {
-  compileSdkVersion rootProject.compileSdkVersion
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
-  defaultConfig {
-    applicationId "com.santalu.sample"
-    minSdkVersion rootProject.minSdkVersion
-    targetSdkVersion rootProject.targetSdkVersion
-    versionCode 1
-    versionName "1.0"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    defaultConfig {
+        applicationId "com.santalu.maskara.sample"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
     }
-  }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
-  implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation project(':maskedittext')
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
-  implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-  implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':library')
+
+    // region FOUNDATION
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "androidx.core:core-ktx:$versions.core"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    // endregion
+
+    // region UI
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    // endregion
 }
