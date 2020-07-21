@@ -1,1 +1,3 @@
-include ':app', ':maskedittext'
+include ':library'
+include ':app'
+rootProject.name = "Maskara"
