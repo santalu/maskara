@@ -49,9 +49,8 @@ internal class Maskara(private val mask: Mask) {
             unMaskedText = unMasked.clear().toString()
         }
 
-        val isDone = masked.length == mask.value.length && !maskedText.contains(mask.character)
         val selection = mask.nextSelection(text, maskedText, action)
-        return MaskResult(selection, maskedText, unMaskedText, isDone)
+        return MaskResult(selection, maskedText, unMaskedText, mask.isDone(maskedText))
     }
 }
 
@@ -92,4 +91,11 @@ internal fun Mask.nextSelection(before: CharSequence, after: CharSequence, actio
     }
 
     return nextMaskIndex.coerceIn(min(start, end), max(start, end))
+}
+
+/**
+ * Returns validity of mask result
+ */
+internal fun Mask.isDone(after: CharSequence): Boolean {
+    return after.length == value.length && !after.contains(character)
 }
