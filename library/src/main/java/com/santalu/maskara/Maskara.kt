@@ -86,7 +86,9 @@ internal fun Mask.nextSelection(before: CharSequence, after: CharSequence, actio
     val end = after.length
     var nextMaskIndex = value.indexOf(character, start)
     // Make sure the cursor is located to the end of the selection
-    if (before.getOrNull(start) != after.getOrNull(nextMaskIndex)) {
+    val previousChar = before.getOrNull(start)
+    val nextChar = after.getOrNull(nextMaskIndex)
+    if (previousChar != nextChar && nextChar != character) {
         ++nextMaskIndex
     }
 

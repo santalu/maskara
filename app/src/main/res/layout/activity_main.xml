@@ -13,28 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+        android:textAppearance="?attr/textAppearanceBody1" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/unMasked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+        android:textAppearance="?attr/textAppearanceBody1" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+        android:textAppearance="?attr/textAppearanceBody1" />
 
     <com.santalu.maskara.widget.MaskEditText
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         app:mask="+90 (___) ___ __ __" />
 
 </LinearLayout>
