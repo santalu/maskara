@@ -99,7 +99,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.santalu:maskara:1.0'
+    implementation 'com.github.santalu:maskara:1.0.0'
 }
 ```
 
