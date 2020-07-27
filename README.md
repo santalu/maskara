@@ -48,7 +48,7 @@ You can retrieve these from both the widget and the listener.
 
 ## Usage
 
-#### With Widget
+#### With The Widget
 
 ```
 <com.santalu.maskara.widget.MaskEditText
@@ -68,7 +68,7 @@ val raw = input.unMasked
 val isDone = input.isDone
 ```
 
-#### Without Widget
+#### Without The Widget
 
 ```
 val mask = Mask(

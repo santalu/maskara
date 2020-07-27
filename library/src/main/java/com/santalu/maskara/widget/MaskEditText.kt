@@ -1,9 +1,9 @@
 package com.santalu.maskara.widget
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextWatcher
 import android.util.AttributeSet
+import androidx.core.content.withStyledAttributes
 import com.google.android.material.textfield.TextInputEditText
 import com.santalu.maskara.Mask
 import com.santalu.maskara.MaskChangedListener
@@ -15,7 +15,6 @@ import com.santalu.maskara.mostOccurred
  * Created by fatih.santalu on 7/7/2020.
  */
 
-@SuppressLint("Recycle")
 class MaskEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -34,7 +33,7 @@ class MaskEditText @JvmOverloads constructor(
         get() = maskChangedListener?.isDone ?: false
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.MaskEditText).apply {
+        context.withStyledAttributes(attrs, R.styleable.MaskEditText) {
             val style = getInteger(R.styleable.MaskEditText_maskStyle, 0)
             val value = getString(R.styleable.MaskEditText_mask).orEmpty()
             val character = getString(R.styleable.MaskEditText_maskCharacter).orEmpty()
@@ -44,8 +43,6 @@ class MaskEditText @JvmOverloads constructor(
                 val mask = Mask(value, maskChar, MaskStyle.valueOf(style))
                 maskChangedListener = MaskChangedListener(mask)
             }
-
-            recycle()
         }
     }
 
