@@ -39,6 +39,6 @@ class MaskChangedListener(mask: Mask) : TextWatcher {
         if (selfChange || s.isNullOrEmpty()) return
 
         val action = if (before > 0 && count == 0) Action.DELETE else Action.INSERT
-        result = maskara.apply(s, action)
+        result = maskara(s, action)
     }
 }

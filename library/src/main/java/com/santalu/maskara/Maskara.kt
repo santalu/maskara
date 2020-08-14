@@ -11,7 +11,7 @@ import kotlin.math.min
 @Suppress("SpellCheckingInspection")
 internal class Maskara(private val mask: Mask) {
 
-    fun apply(text: CharSequence, action: Action): MaskResult {
+    operator fun invoke(text: CharSequence, action: Action): MaskResult {
         val source = text.iterator()
         val masked = StringBuilder()
         val unMasked = StringBuilder()
@@ -54,12 +54,12 @@ internal class Maskara(private val mask: Mask) {
     }
 }
 
-internal fun CharIterator.nextOrNull(): Char? = if (hasNext()) nextChar() else null
+private fun CharIterator.nextOrNull(): Char? = if (hasNext()) nextChar() else null
 
 /**
  * Returns the next valid mask character from start
  */
-internal fun CharIterator.nextMaskChar(char: Char?): Char? {
+private fun CharIterator.nextMaskChar(char: Char?): Char? {
     var nextMaskChar = char ?: return null
     while (hasNext()) {
         if (nextMaskChar.isLetterOrDigit()) break
@@ -72,7 +72,7 @@ internal fun CharIterator.nextMaskChar(char: Char?): Char? {
 /**
  * Returns index of first mask character after the current cursor position
  */
-internal fun Mask.nextSelection(before: CharSequence, after: CharSequence, action: Action): Int {
+private fun Mask.nextSelection(before: CharSequence, after: CharSequence, action: Action): Int {
     if (after.isEmpty()) return 0
 
     val start = Selection.getSelectionStart(before)
@@ -98,6 +98,6 @@ internal fun Mask.nextSelection(before: CharSequence, after: CharSequence, actio
 /**
  * Returns validity of mask result
  */
-internal fun Mask.isDone(after: CharSequence): Boolean {
+private fun Mask.isDone(after: CharSequence): Boolean {
     return after.length == value.length && !after.contains(character)
 }
