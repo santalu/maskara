@@ -17,7 +17,7 @@ internal class Maskara(private val mask: Mask) {
         val unMasked = StringBuilder()
 
         var char = source.nextOrNull()
-        loop@ for (maskChar in mask.value) {
+        for (maskChar in mask.value) {
             when {
                 maskChar == char && maskChar != mask.character -> {
                     masked.append(maskChar)
@@ -26,7 +26,7 @@ internal class Maskara(private val mask: Mask) {
                 maskChar == mask.character -> {
                     char = source.nextMaskChar(char)
                     if (char == null) {
-                        if (mask.style == MaskStyle.NORMAL) break@loop
+                        if (mask.style == MaskStyle.NORMAL) break
                         masked.append(maskChar)
                     } else {
                         masked.append(char)
@@ -35,7 +35,7 @@ internal class Maskara(private val mask: Mask) {
                     }
                 }
                 else -> {
-                    if (char == null && mask.style == MaskStyle.NORMAL && action == Action.DELETE) break@loop
+                    if (char == null && mask.style == MaskStyle.NORMAL && action == Action.DELETE) break
                     masked.append(maskChar)
                 }
             }
