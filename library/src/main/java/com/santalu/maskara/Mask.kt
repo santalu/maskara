@@ -26,6 +26,6 @@ data class Mask(
  */
 internal fun String.mostOccurred(): Char {
     require(isNotEmpty()) { Mask.ERROR_EMPTY_VALUE }
-    val result = groupBy { it }.maxBy { it.value.size }
+    val result = groupBy { it }.maxByOrNull { it.value.size }
     return result?.key ?: first()
 }

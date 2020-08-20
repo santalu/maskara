@@ -2,12 +2,16 @@
 buildscript {
 
     ext.versions = [
+            minSdk          : 14,
+            targetSdk       : 29,
+            compileSdk      : 29,
+
             // region TOOLS
             gradle          : '4.0.1',
             // endregion
 
             // region FOUNDATION
-            kotlin          : '1.3.72',
+            kotlin          : '1.4.0',
             core            : '1.3.1',
             appcompat       : '1.2.0',
             // endregion
