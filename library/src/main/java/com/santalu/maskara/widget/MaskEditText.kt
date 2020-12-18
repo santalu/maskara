@@ -27,7 +27,7 @@ class MaskEditText @JvmOverloads constructor(
         get() = maskChangedListener?.masked.orEmpty()
 
     val unMasked: String
-        get() = maskChangedListener?.unMasked.orEmpty()
+        get() = maskChangedListener?.unMasked ?: text.toString()
 
     val isDone: Boolean
         get() = maskChangedListener?.isDone ?: false
@@ -54,7 +54,9 @@ class MaskEditText @JvmOverloads constructor(
             removeTextChangedListener(maskChangedListener)
             maskChangedListener = watcher
         }
-        super.addTextChangedListener(watcher)
+        if (maskChangedListener != null) {
+            super.addTextChangedListener(watcher)
+        }
     }
 
     override fun onAttachedToWindow() {
@@ -65,5 +67,10 @@ class MaskEditText @JvmOverloads constructor(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         removeTextChangedListener(maskChangedListener)
+    }
+
+    fun clearMask() {
+        removeTextChangedListener(maskChangedListener)
+        maskChangedListener = null
     }
 }

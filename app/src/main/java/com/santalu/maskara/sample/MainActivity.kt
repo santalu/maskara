@@ -24,6 +24,13 @@ class MainActivity : AppCompatActivity() {
             binding.masked.text = "Masked ${binding.input.masked}"
             binding.unMasked.text = "Raw ${binding.input.unMasked}"
             binding.status.text = "isDone ${binding.input.isDone}"
+
+            binding.textview.text = binding.input.unMasked
+        }
+
+        binding.clearFormat.setOnClickListener {
+            binding.input.clearMask()
+            binding.textview.clearMask()
         }
     }
 }
