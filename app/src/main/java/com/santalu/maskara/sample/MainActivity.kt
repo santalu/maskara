@@ -27,5 +27,10 @@ class MainActivity : AppCompatActivity() {
 
             binding.textview.text = binding.input.unMasked
         }
+
+        binding.clearFormat.setOnClickListener {
+            binding.input.clearMask()
+            binding.textview.clearMask()
+        }
     }
 }

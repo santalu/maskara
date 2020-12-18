@@ -4,7 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.santalu.maskara.*
+import com.santalu.maskara.Action
+import com.santalu.maskara.Mask
+import com.santalu.maskara.MaskResult
+import com.santalu.maskara.MaskStyle
+import com.santalu.maskara.Maskara
+import com.santalu.maskara.R
+import com.santalu.maskara.mostOccurred
 
 @SuppressLint("Recycle")
 class MaskTextView : AppCompatTextView {
@@ -32,7 +38,7 @@ class MaskTextView : AppCompatTextView {
         get() = result?.masked.orEmpty()
 
     val unMasked: String
-        get() = result?.unMasked.orEmpty()
+        get() = result?.unMasked ?: text.toString()
 
     val isDone: Boolean
         get() = result?.isDone ?: false
@@ -59,5 +65,9 @@ class MaskTextView : AppCompatTextView {
             result?.masked
         } ?: text
         super.setText(masked, type)
+    }
+
+    fun clearMask() {
+        maskara = null
     }
 }
