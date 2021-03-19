@@ -2,12 +2,16 @@ package com.santalu.maskara.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Rect
 import android.text.TextWatcher
 import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputEditText
+import com.santalu.maskara.Action
 import com.santalu.maskara.Mask
 import com.santalu.maskara.MaskChangedListener
+import com.santalu.maskara.MaskResult
 import com.santalu.maskara.MaskStyle
+import com.santalu.maskara.Maskara
 import com.santalu.maskara.R
 import com.santalu.maskara.mostOccurred
 
@@ -32,6 +36,7 @@ class MaskEditText @JvmOverloads constructor(
 
     val isDone: Boolean
         get() = maskChangedListener?.isDone ?: false
+    var mask : Mask? = null
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.MaskEditText).apply {
@@ -41,8 +46,8 @@ class MaskEditText @JvmOverloads constructor(
 
             if (value.isNotEmpty()) {
                 val maskChar = if (character.isEmpty()) value.mostOccurred() else character.single()
-                val mask = Mask(value, maskChar, MaskStyle.valueOf(style))
-                maskChangedListener = MaskChangedListener(mask)
+                mask = Mask(value, maskChar, MaskStyle.valueOf(style))
+                maskChangedListener = MaskChangedListener(mask!!)
             }
 
             recycle()
@@ -68,5 +73,12 @@ class MaskEditText @JvmOverloads constructor(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         removeTextChangedListener(maskChangedListener)
+    }
+
+    override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect)
+        val maskara = Maskara(mask!!)
+        val result = maskara.apply(this.text.toString(), Action.INSERT)
+        this.setText(result.masked)
     }
 }
