@@ -25,7 +25,7 @@ internal fun MaskResult.apply(text: Editable) {
     text.replace(0, text.length, masked)
     
     // The selection could be higher than the length of the text if the EditText contains a filter then it'll lead it to crash.
-    val filteredSelection = min(selection, text?.length ?: 0)
+    val filteredSelection = kotlin.math.min(selection, text.length)
     Selection.setSelection(text, filteredSelection)
 
     // resume filters
